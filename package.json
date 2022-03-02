@@ -1,0 +1,48 @@
+{
+    "version": "0.1.0",
+    "description": "ArtQuiz",
+    "private": true,
+    "name": "art-quiz",
+    "scripts": {
+        "start": "webpack serve --env development",
+        "build": "webpack",
+        "lint": "eslint **/*.js",
+        "lint-fix": "eslint --fix **/*.js",
+        "format": "prettier -w ."
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.(js|jsx)": [
+            "npm run lint-fix",
+            "format",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^10.2.4",
+        "css-loader": "^6.6.0",
+        "eslint": "^8.10.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-prettier": "^4.0.0",
+        "html-loader": "^3.1.0",
+        "html-webpack-plugin": "^5.5.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.4",
+        "mini-css-extract-plugin": "^2.5.3",
+        "prettier": "^2.5.1",
+        "sass": "^1.49.9",
+        "sass-loader": "^12.6.0",
+        "sass-resources-loader": "^2.2.4",
+        "webpack": "^5.69.1",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.4",
+        "webpack-remove-empty-scripts": "^0.7.3"
+    }
+}
