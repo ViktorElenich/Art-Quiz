@@ -1,0 +1,121 @@
+import { ScoreItem } from "../components/Score/scorItem";
+import { ImagePreload } from "../help/imagePreload";
+import { getData } from "../help/utils";
+import { View } from "./view";
+
+export class ScorePage extends View {
+    constructor(params) {
+        super(params);
+        const title = this.langValue === 'en' ? 'score' : 'результаты';
+        this.setTitle(`art-quiz. - ${title}.`);
+        this.type = this.params.type;
+        this.category = this.params.category;
+        this.totalScore = 0;
+    }
+
+    async setHeader() {
+        const scoreHeader = document.querySelector('#scoreHeader');
+        let categoryHeader;
+        let typeHeader;
+    
+        if (this.langValue === 'en') {
+            categoryHeader = this.category;
+            typeHeader = this.type;
+            scoreHeader.textContent = `${categoryHeader} ${typeHeader}`;
+        } else {
+            categoryHeader = this.translator.data[this.category];
+            typeHeader = this.type === 'pictures' ? 'картины' : 'художники';
+            scoreHeader.textContent = `${typeHeader} ${categoryHeader}`;
+        }
+    }
+
+    async scoreToHtml() {
+        const imageSrc = [];
+    
+        if (this.scoreResults) {
+            this.scoreResults.forEach((item) => {
+                const { isCorrect } = item;
+        
+                if (isCorrect) {
+                    this.totalScore += 1;
+                }
+        
+                imageSrc.push(`../../assets/img/small/${item.imageNum}full.webp`);
+        
+                const scoreItem = new ScoreItem(isCorrect, item);
+                scoreItem.mount(this.scoreContainer);
+            })
+        } else {
+            this.scoreContainer.innerHTML = `
+                <div class="restrictive-message">
+                    <h2 class="restrictive-message__title" data-langkey="res-mes-title"></h2>
+                    <p class="restrictive-message__info" data-langkey="res-mes-info"></p>
+                </div>
+            `
+        }
+    
+        const preloader = new ImagePreload(imageSrc);
+        await preloader.preloadImages();
+    }
+
+    bindListeners() {
+        this.scoreContainer.addEventListener('click', (e) => {
+            const { target } = e;
+            const isScoreItem = target.classList.contains('score__item');
+        
+            if (isScoreItem) {
+                const popup = target.querySelector('.popup-score');
+                popup.classList.toggle('hidden');
+            }
+        })
+    }
+
+    async getScoreResults() {
+        const resultsFromStorage = JSON.parse(localStorage.getItem(`${this.type}Results`)).find(res => res.name === this.category).results;
+        const data = await getData(this.type, this.langValue);
+        this.scoreResults = resultsFromStorage.map(el => ({...data.find(full => full.imageNum === el.imageNum), isCorrect: el.isCorrect}));
+    }
+
+    async mounted() {
+        this.scoreContainer = document.querySelector('#scoreContainer');
+        await this.getScoreResults();
+        await this.scoreToHtml();
+        await this.translatePage();
+        this.setHeader();
+    
+        const totalScore = document.querySelector('#totalScore');
+        totalScore.textContent = this.totalScore;
+        this.bindListeners();
+    }
+
+    render() {
+        return `
+        <header>
+            <div class="container">
+                <div class="header header-score">
+                <a href="/categories/${this.type}" class="header-score__nav header__nav--left header__nav btn" title="back" data-link><ion-icon name="chevron-back-outline"></ion-icon></a>
+                <a href="/" class="header-quiz__nav header__nav header__nav--right btn" title="home" data-link><ion-icon name="home"></ion-icon></a>
+                <h1 class="header__title" data-langkey="score">score.</h1>
+                </div>
+            </div>
+        </header>
+    
+        <main class="main">
+            <div class="container">
+                <div class="score-header"><span id="scoreHeader"></span>: <span id="totalScore"></span>/10</div>
+                <div class="score" id="scoreContainer"></div>
+            </div>
+        </main>
+    
+        <footer>
+            <div class="container">
+                <div class="footer">
+                <a class="footer__github" href="https://github.com/viktorelenich">Viktor Elenich</a>
+                <div class="footer__year">© 2021</div>
+                <a class="footer__school" href="https://rs.school/js/" title="Rolling Scopes School"></a>
+                </div>
+            </div>
+        </footer>
+        `
+    }
+}
