@@ -44,5 +44,8 @@
         "webpack-cli": "^4.9.2",
         "webpack-dev-server": "^4.7.4",
         "webpack-remove-empty-scripts": "^0.7.3"
+    },
+    "devDependencies": {
+        "eslint-plugin-html": "^6.2.0"
     }
 }

@@ -39,7 +39,7 @@ module.exports = ({ development }) => ({
         rules: [
         {
             test: /\.(html)$/,
-            include: path.join(__dirname, 'src/components'),
+            include: path.join(__dirname, 'src/js/components'),
             use: {
             loader: 'html-loader',
             },

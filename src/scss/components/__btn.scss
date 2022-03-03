@@ -1,0 +1,31 @@
+:root {
+  --btn-fs: 1em;
+  --btn-p: 0.5em;
+}
+
+@media (min-width: 420px) {
+  :root {
+    --btn-fs: 1.5em;
+  }
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--btn-p);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 1.5s linear;
+  color: var(--dark);
+
+  &:hover {
+    box-shadow: var(--inner-shadow);
+
+    ion-icon {
+      color: var(--accent);
+    }
+  }
+}

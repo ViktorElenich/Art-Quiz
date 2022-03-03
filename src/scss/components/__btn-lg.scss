@@ -1,0 +1,38 @@
+:root {
+  --btn-lg-fs: 1em;
+  --btn-lg-w: 50%;
+}
+
+@media (min-width: 420px) {
+  :root {
+    --btn-lg-fs: 1.2em;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --btn-lg-w: 30%;
+    --btn-lg-fs: 1.2em;
+  }
+}
+
+
+.btn-lg {
+  width: var(--btn-lg-w);
+  padding: 1em;
+  font-size: var(--btn-lg-fs);
+  font-weight: 700;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 1.5s linear;
+  background-color: white;
+  box-shadow: var(--shadow);
+
+  &:hover {
+    box-shadow: var(--inner-shadow);
+  }
+}

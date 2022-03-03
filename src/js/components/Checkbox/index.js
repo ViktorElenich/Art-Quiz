@@ -1,15 +1,16 @@
 import { htmlToElement, setToLocalStorage } from '../../help/utils';
 import checkboxHTML from './index.html';
+import './index.scss';
 
 
-export class Checkbox {
+export default class Checkbox {
     constructor(id, name, checked) {
         this.id = id;
         this.name = name;
         this.checked = checked;
     }
 
-    mount(parent) {
+    render(parent) {
         const element = htmlToElement(checkboxHTML);
         const input = document.createElement('input');
         input.type = 'checkbox';

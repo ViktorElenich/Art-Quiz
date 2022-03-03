@@ -1,9 +1,9 @@
-import { ScoreItem } from "../components/Score/scorItem";
-import { ImagePreload } from "../help/imagePreload";
+import ScoreItem from "../components/Score/scoreItem";
+import ImagePreload from "../help/imagePreload";
 import { getData } from "../help/utils";
-import { View } from "./view";
+import View from "./view";
 
-export class ScorePage extends View {
+export default class ScorePage extends View {
     constructor(params) {
         super(params);
         const title = this.langValue === 'en' ? 'score' : 'результаты';

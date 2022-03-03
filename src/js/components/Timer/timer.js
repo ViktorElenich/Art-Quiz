@@ -1,4 +1,6 @@
-export class Timer {
+import './index.scss';
+
+export default class Timer {
     constructor(val, type = '') {
         this.timerValue = val;
         this.type = type;

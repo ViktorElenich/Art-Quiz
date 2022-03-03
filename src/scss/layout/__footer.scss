@@ -1,0 +1,52 @@
+:root {
+  --footer-logo-s: 3.5em;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --footer-fs: 1em;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --footer-fs: 1.5em;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(var(--vh, 1vh) * 8);
+  padding: 0 1em;
+
+  @media (min-width: 768px) {
+    padding: 2em 2em;
+  }
+
+  &__github {
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: 0.5s ease;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__github,
+  &__year {
+    font-size: var(--footer-fs);
+    color: #fff;
+  }
+
+  &__school {
+    width: var(--footer-logo-s);
+    height: var(--footer-logo-s);
+    background: url('../assets/rss.svg') no-repeat center;
+    background-size: contain;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}

@@ -1,4 +1,4 @@
-export class ImagePreload {
+export default class ImagePreload {
     constructor(arrOfImages) {
         this.arr = arrOfImages;
         this.thumbs = document.querySelectorAll('.image-loading');

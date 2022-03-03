@@ -1,0 +1,10 @@
+ion-icon {
+  pointer-events: none;
+  color: var(--grey);
+  font-size: var(--btn-fs);
+  transition: 0.6s ease;
+
+  &::selection {
+    background: transparent;
+  }
+}

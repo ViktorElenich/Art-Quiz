@@ -1,4 +1,4 @@
-export class PlaySound {
+export default class PlaySound {
     constructor(isWithSound, volume) {
         this.isWithSound = isWithSound;
         this.volume = volume;

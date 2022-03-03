@@ -1,0 +1,48 @@
+.tooltip {
+  position: relative;
+  cursor: pointer;
+
+  &.opened &__content {
+    bottom: -2em;
+    z-index: 2;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    font-size: 1em;
+    opacity: 1;
+    pointer-events: all;
+    animation: tooltip-animation 1s ease-out forwards 0.15s;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    z-index: -5;
+    border-radius: 10px;
+    opacity: 0;
+    white-space: nowrap;
+    color: var(--text-dark);
+    background: var(--background-primary);
+    box-shadow: 0 10px 30px rgba(#414856, 0.05);
+    transition: 0.15s ease-in;
+    pointer-events: none;
+  }
+}
+
+@keyframes tooltip-animation {
+  0% {
+    transform: scale(1, 1);
+  }
+  10% {
+    transform: scale(1.1, 0.9);
+  }
+  30% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.05, 0.95);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

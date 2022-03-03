@@ -29,22 +29,22 @@ const router = async () => {
         result: window.location.pathname.match(pathRegex(route.path)),
     }))
 
-    let match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null)
+    let match = potentialMatches.find((potentialMatch) => potentialMatch.result !== null);
 
     if (!match) {
         match = { route: routes[0], result: [window.location.pathname] }
-        window.location.pathname = '/'
+        window.location.pathname = '/';
     }
 
-    const view = new match.route.View(getParams(match))
+    const view = new match.route.View(getParams(match));
 
-    document.querySelector('#app').innerHTML = view.mount()
-    view.mounted()
+    document.querySelector('#app').innerHTML = view.render();
+    view.mounted();
 }
 
 const navigateTo = (url) => {
-    window.history.pushState(null, null, url)
-    router()
+    window.history.pushState(null, null, url);
+    router();
 }
 
 window.addEventListener('popstate', router)
@@ -52,9 +52,9 @@ window.addEventListener('popstate', router)
 document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         if (e.target.matches('[data-link]')) {
-        e.preventDefault()
-        navigateTo(e.target.href)
+        e.preventDefault();
+        navigateTo(e.target.href);
         }
     })
-    router()
+    router();
 })

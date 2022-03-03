@@ -1,4 +1,4 @@
-export class ScoreItem {
+export default class ScoreItem {
     constructor(isCorrect, item) {
         this.isCorrect = isCorrect;
         this.imageNum = item.imageNum;

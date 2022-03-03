@@ -1,8 +1,8 @@
-import { Checkbox } from "../components/Checkbox/checkbox";
+import Checkbox from "../components/Checkbox/index";
 import { setToLocalStorage } from "../help/utils";
-import { View } from "./view";
+import View from "./view";
 
-export class SettingsPage extends View {
+export default class SettingsPage extends View {
     constructor(params) {
         super(params);
         const title = this.langValue === 'en' ? 'settings' : 'настройки';
@@ -68,11 +68,11 @@ export class SettingsPage extends View {
     mounted() {
         const soundCheckboxContainer = document.querySelector('#soundCheckboxContainer');
         const soundCheckbox = new Checkbox('soundCheckbox', 'isWithSound', this.isWithSound);
-        soundCheckbox.mount(soundCheckboxContainer);
+        soundCheckbox.render(soundCheckboxContainer);
     
         const timerCheckboxContainer = document.querySelector('#timerCheckboxContainer');
         const timerCheckbox = new Checkbox('timerCheckbox', 'isWithTimer', this.isWithTimer);
-        timerCheckbox.mount(timerCheckboxContainer);
+        timerCheckbox.render(timerCheckboxContainer);
     
         this.soundRange = document.querySelector('#soundRange');
         this.decrTimerBtn = document.querySelector('#decrTimerBtn');
@@ -94,13 +94,13 @@ export class SettingsPage extends View {
         this.translatePage();
     }
 
-    mount() {
+    render() {
         return `
         <header>
             <div class="container">
                 <div class="header header-settings">
                     <a href="/" class="header-settings__nav header__nav header__nav--left btn" title="back" data-link><ion-icon name="chevron-back-outline"></ion-icon></a>
-                    <h1 class="header__title" data-langkey="header">settings.</h1>
+                    <h1 class="header__title" data-langkey="header">settings</h1>
                 </div>
             </div>
         </header>

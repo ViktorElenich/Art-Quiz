@@ -1,0 +1,59 @@
+:root {
+  --header-p: 2em;
+  --header-nav-p: 0.5em;
+  --header-title-fs: 1.5em;
+}
+
+@media (min-width: 420px) {
+  :root {
+    --header-nav-p: 2em;
+    --header-title-fs: 2em;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-title-fs: 2.5em;
+  }
+}
+
+@media (min-width: 1497px) {
+  :root {
+    --header-nav-p: 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --header-p: 1.5em 0;
+    --header-nav-p: 0;
+  }
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--vh, 1vh) * 8);
+  padding: var(--header-p) var(--section-p);
+
+  &__nav {
+    position: absolute;
+    top: unset;
+
+    &--left {
+      left: var(--header-nav-p);
+    }
+
+    &--right {
+      right: var(--header-nav-p);
+    }
+  }
+
+  &__title {
+    font-size: var(--header-title-fs);
+    @include heading-animation;
+    color: #fff;
+  }
+}

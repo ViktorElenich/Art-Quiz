@@ -1,7 +1,7 @@
-import { ImagePreload } from "../help/imagePreload";
-import { View } from "./view";
+import ImagePreload from "../help/imagePreload";
+import View from "./view";
 
-export class HomePage extends View {
+export default class HomePage extends View {
     constructor(params){
         super(params);
         const title = this.langValue === 'en' ? 'home' : 'главная';
@@ -41,10 +41,6 @@ export class HomePage extends View {
                     <div class="home-types__image pictures image-loading"></div>
                     <div class="home-types__text" data-langkey="pictures-quiz">pictures quiz</div>
                     </a>
-                    <a class="home-types__type" href="/blitz" data-link>
-                    <div class="home-types__image blitz-image image-loading"></div>
-                    <div class="home-types__text" data-langkey="blitz-quiz">blitz quiz</div>
-                    </a>
                 </div>
                 </div>
             </div>
@@ -53,7 +49,7 @@ export class HomePage extends View {
         <footer>
             <div class="container">
                 <div class="footer">
-                <a class="footer__github" href="https://github.com/liliyavoloshina">liliyavoloshina</a>
+                <a class="footer__github" href="https://github.com/viktorelenich">Viktor Elenich</a>
                 <div class="footer__year">© 2021</div>
                 <a class="footer__school" href="https://rs.school/js/" title="Rolling Scopes School"></a>
                 </div>

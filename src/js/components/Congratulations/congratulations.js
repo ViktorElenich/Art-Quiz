@@ -1,4 +1,6 @@
-export class Congratulations {
+import './index.scss';
+
+export default class Congratulations {
     constructor() {
         this.containerEl = null;
     

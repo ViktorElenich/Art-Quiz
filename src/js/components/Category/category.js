@@ -1,4 +1,6 @@
-export class Category {
+import './index.scss';
+
+export default class Category {
     constructor(isPlayed, type, categoryName, correctNumber, splittedName) {
         this.isPlayed = isPlayed;
         this.type = type;
@@ -19,7 +21,7 @@ export class Category {
         <a class="category__name ${this.isPlayed ? 'played' : ''}" href="/quiz/${this.type}/${this.categoryName}" data-link
             data-langkey="${this.categoryName}">${this.splittedName}</a>
         <a class="category__image image-loading ${!this.isPlayed ? 'inversed' : ''}" href="/quiz/${this.type}/${this.categoryName}" data-link>
-            <img src="../img/category/${this.type}/${this.categoryName}.webp" alt="${this.categoryName} quiz">
+            <img src="../../assets/img/category/${this.type}/${this.categoryName}.webp" alt="${this.categoryName} quiz">
         </a>
         `
     }

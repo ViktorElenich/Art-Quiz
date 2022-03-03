@@ -1,8 +1,8 @@
-import { Category } from "../components/Category/category";
-import { ImagePreload } from "../help/imagePreload";
-import { View } from "./view";
+import Category from "../components/Category/category";
+import ImagePreload from "../help/imagePreload";
+import View from "./view";
 
-export class CategoriesPage extends View {
+export default class CategoriesPage extends View {
     constructor(params) {
         super(params);
         const title = this.langValue === 'en' ? 'categories' : 'категории';
@@ -26,7 +26,7 @@ export class CategoriesPage extends View {
             const correctNumber = this.getCorrectNumber(category.results);
     
             const categoryCard = new Category(isPlayed, this.type, category.name, correctNumber, splittedName);
-            categoryCard.mount(categoriesContainer);
+            categoryCard.render(categoriesContainer);
         })
     }
 
@@ -54,7 +54,7 @@ export class CategoriesPage extends View {
             <div class="container">
                 <div class="header header-categories">
                     <a href="/" class="header-categories__nav header__nav--left header__nav btn" title="Back" data-link><ion-icon name="chevron-back-outline"></ion-icon></a>
-                    <h1 class="header__title"><span data-langkey="${this.type}"></span>.</h1>
+                    <h1 class="header__title"><span data-langkey="${this.type}"></span></h1>
                 </div>
             </div>
         </header>

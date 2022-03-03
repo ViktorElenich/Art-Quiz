@@ -1,4 +1,6 @@
-export class View {
+import Translations from "../help/translator"
+
+export default class View {
     constructor(params) {
         this.params = params
         this.results = []
@@ -41,10 +43,10 @@ export class View {
         this.langValue = localStorage.getItem('langValue') || 'en';
     }
 
-    /* async translatePage() {
-        this.translator = new Translator(this.langValue)
-        await this.translator.translate()
-    } */
+    async translatePage() {
+        this.translator = new Translations(this.langValue)
+        await this.translator.translate();
+    }
 
     render() {
         return ''

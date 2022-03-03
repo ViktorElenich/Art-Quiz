@@ -1,11 +1,11 @@
-export default class {
+export default class Translations {
     constructor(lang) {
         this.lang = lang || 'en';
         this.elements = document.querySelectorAll('[data-langkey]');
     }
 
     async loadLang() {
-        const res = await fetch(`/data/ui/${this.lang}.json`);
+        const res = await fetch(`../../assets/json/ui/${this.lang}.json`);
         this.data = await res.json();
     }
 

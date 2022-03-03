@@ -1,14 +1,14 @@
-import { Congratulations } from "../components/Congratulations/congratulations";
-import { QuizImage } from "../components/QuizImage/quizImage";
-import { Timer } from "../components/Timer/timer";
-import { ImagePreload } from "../help/imagePreload";
-import { PlaySound } from "../help/playSound";
+import Congratulations from "../components/Congratulations/congratulations";
+import QuizImage from "../components/QuizImage/quizImage";
+import Timer from "../components/Timer/timer";
+import ImagePreload from "../help/imagePreload";
+import PlaySound from "../help/playSound";
 import { SliderTransformer } from "../help/SliderTransformer";
-import { View } from "./view";
+import View from "./view";
 import { setAnimatedBtns, generateHint, shuffle, getData, getRandomIdx } from '../help/utils';
 import { QUIZ_TYPES, QUIZ_QUESTIONS_COUNT, QUIZ_IMAGES_ALL, QUIZ_ANSWERS_COUNT } from '../help/constants';
 
-export class QuizPage extends View {
+export default class QuizPage extends View {
     constructor(params) {
         super(params);
         const title = this.langValue === 'en' ? 'quiz' : 'игра';
@@ -100,13 +100,13 @@ export class QuizPage extends View {
     
         if (correctNum === QUIZ_QUESTIONS_COUNT) {
             resultsText.textContent = this.langValue === 'en' ? 'are you an art expert?!' : 'да ты эксперт!';
-            this.soundResults.src = '/audio/applause.wav';
+            this.soundResults.src = '/sound/applause_1.mp3';
         } else if (correctNum > QUIZ_QUESTIONS_COUNT / 2 && correctNum < QUIZ_QUESTIONS_COUNT) {
             resultsText.textContent = this.langValue === 'en' ? 'wow, you are on fire!' : 'потрясающе!';
-            this.soundResults.src = '/audio/applause.wav';
+            this.soundResults.src = '/sound/applause_2.mp3';
         } else {
             resultsText.textContent = this.langValue === 'en' ? 'you can do better!' : 'ты можешь лучше!';
-            this.soundResults.src = '/audio/failure.wav';
+            this.soundResults.src = '/sound/fail.mp3';
         }
     
         if (this.isWithSound) {
@@ -148,7 +148,7 @@ export class QuizPage extends View {
                 srcForPreload.push(`../../assets/img/pictures/${imageNum}.jpg`);
         
                 const quizImage = new QuizImage(this.type, imageNum, hint);
-                quizImage.mount(this.imagesSlider);
+                quizImage.render(this.imagesSlider);
             })
         } else {
             const randomImages = [];
@@ -186,7 +186,7 @@ export class QuizPage extends View {
                 srcForPreload.push(`../../assets/img/pictures/${imageNum}.jpg`);
         
                 const quizImage = new QuizImage(this.type, imageNum, hint, name);
-                quizImage.mount(this.imagesSlider);
+                quizImage.render(this.imagesSlider);
             })
         }
         const preloader = new ImagePreload(srcForPreload);
@@ -317,7 +317,7 @@ export class QuizPage extends View {
         const currentAuthor = this.questions[this.currentQuestion].author;
         const currentYear = this.questions[this.currentQuestion].year;
     
-        const imageSrc = `../../assets/img/pictures/${imageNum}.jpg`;
+        const imageSrc = `../../assets/img/pictures/${currentImageNum}.jpg`;
         const oneImagePreload = document.querySelector('.modal__image');
     
         modalImage.src = imageSrc;
@@ -369,7 +369,7 @@ export class QuizPage extends View {
             this.soundResults.pause();
         }
     }
-
+    
     observeLocation() {
         const backBtn = document.querySelectorAll('.back-link');
         const nextQuizBtn = document.querySelector('#nextQuizBtn');
@@ -496,7 +496,7 @@ export class QuizPage extends View {
         if (this.isWithTimer) {
             const header = document.querySelector('#header');
             this.timer = new Timer(this.timerValue);
-            this.timer.mount(header);
+            this.timer.render(header);
         
             this.initTimer();
         }
@@ -508,7 +508,7 @@ export class QuizPage extends View {
         this.translatePage();
     }
 
-    mount() {
+    render() {
         return `
         <header>
             <div class="container">

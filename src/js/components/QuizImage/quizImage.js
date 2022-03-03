@@ -1,4 +1,6 @@
-export class QuizImage {
+import './index.scss';
+
+export default class QuizImage {
     constructor(type, imageNum, hint, correctAnswer = '') {
         this.type = type;
         this.imageNum = imageNum;

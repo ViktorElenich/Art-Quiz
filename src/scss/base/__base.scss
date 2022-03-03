@@ -1,0 +1,113 @@
+:root {
+  --section-p: 0.5em;
+}
+
+@media (min-width: 420px) {
+  :root {
+    --section-p: 2em;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  font-family: 'Rubik', sans-serif;
+  background-color: var(--background-primary);
+
+  &::-webkit-scrollbar {
+    width: 0.8em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--grey-medium);
+  }
+}
+
+img::selection {
+  background: transparent;
+}
+
+::selection {
+  background: var(--grey-light);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--background-primary);
+
+  header {
+    flex: 0 0 auto;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    flex: 0 0 auto;
+  }
+}
+
+.image-loading,
+.one-image-loading {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150px;
+    z-index: 2;
+    height: 100%;
+    width: 200px;
+    background: linear-gradient(to right, transparent 0%, #e7e7e7 50%, transparent 100%);
+    animation: loading 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #d1d1d1;
+  }
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+  }
+  to {
+    left: 100%;
+  }
+}
